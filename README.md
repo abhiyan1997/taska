@@ -1,4 +1,4 @@
-# 🛠️ Taska – A Local Services Booking Platform (Nepal 🇳🇵)
+# 🛠️ Taska – A Local Services Booking Platform
 
 Taska is a MERN-stack based web application. It connects local customers with service professionals such as electricians, plumbers, home cleaners, and more. Users can easily discover, book, and review services based on location, ratings, and availability.
 
@@ -9,7 +9,7 @@ Taska is a MERN-stack based web application. It connects local customers with se
 - [About the Project](#about-the-project)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
-- [Development Phases ✅](#development-phases-)
+- [Development Phases](#development-phases-)
 - [Database Models](#database-models)
 - [Setup Instructions](#setup-instructions)
 - [Future Plans](#future-plans)
@@ -39,13 +39,13 @@ Taska aims to solve the problem of finding trusted service providers for Nepali 
 ## ✅ Development Phases
 
 ### 📍 Phase 1 – MVP (Core System)
-- [x] Setup MERN architecture
-- [x] User registration/login
-- [x] Role-based access (customer, provider, admin)
-- [x] Service listing by providers
-- [x] Service browsing by customers
-- [x] Booking system
-- [x] Basic user dashboards
+- [ ] Setup MERN architecture
+- [ ] User registration/login
+- [ ] Role-based access (customer, provider, admin)
+- [ ] Service listing by providers
+- [ ] Service browsing by customers
+- [ ] Booking system
+- [ ] Basic user dashboards
 
 ### ✨ Phase 2 – Improved Functionality
 - [ ] Filter/search services by category, city, price
