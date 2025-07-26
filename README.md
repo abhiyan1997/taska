@@ -4,20 +4,6 @@ Taska is a MERN-stack based web application. It connects local customers with se
 
 ---
 
-## 📌 Table of Contents
-
-- [About the Project](#about-the-project)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Development Phases](#development-phases-)
-- [Database Models](#database-models)
-- [Setup Instructions](#setup-instructions)
-- [Future Plans](#future-plans)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
 ## 📖 About the Project
 
 Taska aims to solve the problem of finding trusted service providers for Nepali households. From fixing lights to cleaning homes, Taska connects users with verified professionals in just a few clicks.
