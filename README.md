@@ -46,3 +46,4 @@ Taska aims to solve the problem of finding trusted service providers for Nepali 
 - [ ] Email or SMS notifications
 - [ ] Google Maps API for location-based search
 - [ ] Mobile responsiveness (PWA or mobile-first design)
+- [ ]  AI Chatbot (Customer Support Assistant)
