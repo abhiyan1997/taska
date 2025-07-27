@@ -1,24 +1,28 @@
 # 🛠️ Taska – A Local Services Booking Platform
 
-Taska is a MERN-stack based web application. It connects local customers with service professionals such as electricians, plumbers, home cleaners, and more. Users can easily discover, book, and review services based on location, ratings, and availability.
+**Taska** is a MERN-stack based web application that connects local customers with verified service professionals such as electricians, plumbers, home cleaners, and more. Users can easily discover, book, and review services based on location, ratings, and availability.
 
 ---
 
 ## 📖 About the Project
 
-Taska aims to solve the problem of finding trusted service providers for Nepali households. From fixing lights to cleaning homes, Taska connects users with verified professionals in just a few clicks.
+Taska aims to solve the problem of finding trusted and nearby service providers for Nepali households. From fixing lights to cleaning homes, Taska enables users to book verified professionals in just a few clicks — based on their area, time, and needs.
 
 ---
 
 ## ✨ Features
 
-- 👤 User authentication (JWT)
-- 🧍 Role-based access (Customer, Provider, Admin)
-- 🧰 Browse and book services
-- 📆 Booking schedule with time slots
-- 📊 Dashboards for users and providers
-- ⭐ Review and rating system (upcoming)
-- 🔔 Notifications and payments (upcoming)
+- 👤 **User Authentication** (JWT-based login/signup)
+- 🧍 **Role-Based Access** – Customer, Service Provider, and Admin
+- 📍 **Location-Based Service Discovery** – Find providers nearest to you
+- 🗺️ **Interactive Map Integration** – OpenStreetMap (OSM) via Leaflet.js
+- 🧰 **Service Listing and Booking** – Real-time slot-based system
+- 📆 **Booking Scheduler** – Choose time slots and track status
+- 📊 **Role-Specific Dashboards** – Separate views for each user type
+- ⭐ **Rating and Review System**
+- 🔔 **Notifications (Email/SMS)** 
+- 💵 **Digital Payments** – eSewa / Khalti
+- 🤖 **AI Chatbot (Customer Support Assistant)** 
 
 ---
 
@@ -26,24 +30,25 @@ Taska aims to solve the problem of finding trusted service providers for Nepali 
 
 ### 📍 Phase 1 – MVP (Core System)
 - [ ] Setup MERN architecture
-- [ ] User registration/login
+- [ ] User registration and login
 - [ ] Role-based access (customer, provider, admin)
 - [ ] Service listing by providers
 - [ ] Service browsing by customers
-- [ ] Booking system
-- [ ] Basic user dashboards
+- [ ] Booking system with slot selection
+- [ ] Basic dashboards (customer/provider)
+- [ ] **Map integration using OpenStreetMap (Leaflet.js)** – View providers by area
 
 ### ✨ Phase 2 – Improved Functionality
-- [ ] Filter/search services by category, city, price
+- [ ] Filter/search services by category, city, and price
 - [ ] Ratings and reviews
-- [ ] Admin dashboard (view users/bookings/services)
-- [ ] Profile picture uploads (Cloudinary or Firebase)
+- [ ] Admin dashboard (manage users, bookings, services)
+- [ ] Profile uploads (Cloudinary/Firebase)
 - [ ] Booking status updates (pending, accepted, completed)
 
 ### 🚀 Phase 3 – Advanced Features
-- [ ] Real-time chat (Socket.io)
-- [ ] Esewa / Khalti integration
-- [ ] Email or SMS notifications
-- [ ] Google Maps API for location-based search
-- [ ] Mobile responsiveness (PWA or mobile-first design)
-- [ ]  AI Chatbot (Customer Support Assistant)
+- [ ] Real-time chat between customers and providers (Socket.io)
+- [ ] Esewa / Khalti payment integration
+- [ ] Email/SMS notifications
+- [ ] Route-based distance estimation using OSM
+- [ ] AI Chatbot for customer support (OpenAI/Dialogflow)
+- [ ] Mobile responsiveness and/or PWA support
