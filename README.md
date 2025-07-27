@@ -15,7 +15,7 @@ Taska aims to solve the problem of finding trusted and nearby service providers 
 - 👤 **User Authentication** (JWT-based login/signup)
 - 🧍 **Role-Based Access** – Customer, Service Provider, and Admin
 - 📍 **Location-Based Service Discovery** – Find providers nearest to you
-- 🗺️ **Interactive Map Integration** – OpenStreetMap (OSM) via Leaflet.js
+- 🗺️ **Interactive Map Integration**
 - 🧰 **Service Listing and Booking** – Real-time slot-based system
 - 📆 **Booking Scheduler** – Choose time slots and track status
 - 📊 **Role-Specific Dashboards** – Separate views for each user type
@@ -36,7 +36,7 @@ Taska aims to solve the problem of finding trusted and nearby service providers 
 - [ ] Service browsing by customers
 - [ ] Booking system with slot selection
 - [ ] Basic dashboards (customer/provider)
-- [ ] **Map integration using OpenStreetMap (Leaflet.js)** – View providers by area
+- [ ] **Map integration using OpenStreetMap** – View providers by area
 
 ### ✨ Phase 2 – Improved Functionality
 - [ ] Filter/search services by category, city, and price
@@ -51,4 +51,3 @@ Taska aims to solve the problem of finding trusted and nearby service providers 
 - [ ] Email/SMS notifications
 - [ ] Route-based distance estimation using OSM
 - [ ] AI Chatbot for customer support (OpenAI/Dialogflow)
-- [ ] Mobile responsiveness and/or PWA support
