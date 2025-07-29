@@ -31,19 +31,19 @@ Taska aims to solve the problem of finding trusted and nearby service providers 
 ### 📍 Phase 1 – MVP (Core System)
 - [ ] Setup MERN architecture
 - [ ] User registration and login
-- [ ] Role-based access (customer, provider, admin)
+- [ ] Role-based access (customer, provider)
 - [ ] Service listing by providers
 - [ ] Service browsing by customers
 - [ ] Booking system with slot selection
 - [ ] Basic dashboards (customer/provider)
-- [ ] **Map integration using OpenStreetMap** – View providers by area
-
-### ✨ Phase 2 – Improved Functionality
 - [ ] Filter/search services by category, city, and price
 - [ ] Ratings and reviews
+
+### ✨ Phase 2 – Improved Functionality
 - [ ] Admin dashboard (manage users, bookings, services)
 - [ ] Profile uploads (Cloudinary/Firebase)
 - [ ] Booking status updates (pending, accepted, completed)
+- [ ] Map integration using OpenStreetMap – View providers by area
 
 ### 🚀 Phase 3 – Advanced Features
 - [ ] Real-time chat between customers and providers (Socket.io)
