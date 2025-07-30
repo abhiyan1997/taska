@@ -8,7 +8,7 @@ const Navbar = () => {
       <img src="/taska_logo.png" alt="Taska Logo"/>
       </div>
       <div className='flex m-2 p-2 text-white'>
-      <span className='font-bold underline m-2 p-2 cursor-pointer'>Register as Professional</span>
+      <span className='font-bold underline m-2 p-2 cursor-pointer'><Link href='register'>Register as Professional</Link></span>
      <span className='font-bold m-2 p-2 cursor-pointer'> <Link href='login'>Login / Signup</Link></span>
       <span className='font-bold m-2 p-2 cursor-pointer'>Help</span>
       </div>
