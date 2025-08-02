@@ -15,7 +15,7 @@ const RegisterSchema = Yup.object().shape({
     .required('Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().min(6, 'Minimum 6 characters').required('Password is required'),
-  location: Yup.string().oneOf(['Kathmandu'], 'Select a valid location').required('Role is required'),
+  location: Yup.string().oneOf(['Kathmandu'], 'Select a valid location').required('Location is required'),
   role: Yup.string().oneOf(['Customer', 'Service Provider'], 'Select a valid role').required('Role is required')
 
 })
