@@ -1,8 +1,18 @@
+'use client'
+import React from 'react'
+import Link from 'next/link'
+import { Chrome, Phone } from 'lucide-react'
+import { Formik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Apple, Chrome, Phone } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import axios from 'axios'
+
+// Login schema
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().min(6, 'Minimum 6 characters').required('Password is required'),
+})
 
 const Login = () => {
   return (
@@ -16,26 +26,57 @@ const Login = () => {
           <div className='text-center'>
             <span className='font-bold text-[25px] underline'>Sign In</span>
           </div>
-          <label>Email</label>
-          <Input></Input>
-          <label>Password</label>
-          <Input type='password'></Input>
-          <div className='flex items-center justify-center m-3 p-2'>
-            <Button className='w-50 cursor-pointer'>Login</Button><br />
-          </div>
+
+          <Formik
+            initialValues={{ email: '', password: '' }}
+            validationSchema={LoginSchema}
+            onSubmit={async (values) => {
+              try {
+                const res = await axios.post('http://localhost:8080/login', values)
+                console.log('Login success', res.data)
+                // handle redirect or localStorage token here
+              } catch (err) {
+                console.error('Login failed', err)
+              }
+            }}
+          >
+            {({ errors, touched }) => (
+              <Form className='flex flex-col gap-2'>
+
+                <label htmlFor='email'>Email</label>
+                <Field name='email' as={Input} type='email' />
+                {errors.email && touched.email && (
+                  <div className='text-red-500 text-sm'>{errors.email}</div>
+                )}
+
+                <label htmlFor='password'>Password</label>
+                <Field name='password' as={Input} type='password' />
+                {errors.password && touched.password && (
+                  <div className='text-red-500 text-sm'>{errors.password}</div>
+                )}
+
+                <div className='flex items-center justify-center m-3 p-2'>
+                  <Button className='w-50 cursor-pointer' type='submit'>Login</Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+
           <div className='text-center'>
             <span>OR</span>
           </div>
+
           <div className='flex m-2 p-2 gap-4 justify-center'>
-            <Button className='w-40 cursor-pointer'><Chrome></Chrome>Google</Button>
-            <Button className='w-40 cursor-pointer'><Phone></Phone>Phone</Button>
+            <Button className='w-40 cursor-pointer'><Chrome />Google</Button>
+            <Button className='w-40 cursor-pointer'><Phone />Phone</Button>
           </div>
           <div className='m-2 p-2 text-center'>
             <span>Are you a new user? <Link href='register'><span className='underline text-gray-500 cursor-pointer'>Create Your Account</span></Link></span>
           </div>
         </div>
+
         <div>
-          <img src="login-bg.jpg" alt="" />
+          <img src="login-bg.jpg" alt="login" />
         </div>
       </div>
     </div>
