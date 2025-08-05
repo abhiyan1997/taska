@@ -7,14 +7,16 @@ import * as Yup from 'yup'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
-// Login schema
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().min(6, 'Minimum 6 characters').required('Password is required'),
 })
 
+
 const Login = () => {
+  const router= useRouter()
   return (
     <div className='bg-black h-screen'>
       <div className='h-max w-50 m-2 p-2 border border-black rounded-[25px]'>
@@ -34,7 +36,12 @@ const Login = () => {
               try {
                 const res = await axios.post('http://localhost:8080/login', values)
                 console.log('Login success', res.data)
-                // handle redirect or localStorage token here
+                if(res.data.isLoggedIn && res.data.user.role === 'Service Provider'){
+                  router.push('/provider')
+                }
+                else if(res.data.isLoggedIn && res.data.user.role === 'Customer'){
+                  router.push('/customer')
+                }
               } catch (err) {
                 console.error('Login failed', err)
               }
