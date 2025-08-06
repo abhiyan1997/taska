@@ -37,10 +37,11 @@ const Login = () => {
                 const res = await axios.post('http://localhost:8080/login', values)
                 console.log('Login success', res.data)
                 if(res.data.isLoggedIn && res.data.user.role === 'Service Provider'){
-                  router.push('/provider')
+                  localStorage.setItem('Provider', JSON.stringify(res.data.user))
+                  router.push('/dashboard/provider')
                 }
                 else if(res.data.isLoggedIn && res.data.user.role === 'Customer'){
-                  router.push('/customer')
+                  router.push('/dashboard/customer')
                 }
               } catch (err) {
                 console.error('Login failed', err)

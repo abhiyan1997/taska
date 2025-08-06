@@ -1,8 +1,11 @@
+'use client'
 import Sidebar from '@/components/sidebar'
+import axios from 'axios'
 import { Bell, Calendar, Search, User } from 'lucide-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const ProviderDashboard = () => {
+    const storedData= JSON.parse(localStorage.getItem('Provider')) 
   return (
     <div>
         <div className='flex gap-2'>
@@ -15,8 +18,8 @@ const ProviderDashboard = () => {
                     <Search></Search>
                     <Bell></Bell>
                     <div className='flex flex-col m-2 p-2'>
-                        <span className='font-bold text-[18px]'>John Doe</span>
-                        <span className='text-gray-400'>Plumber</span>
+                        <span className='font-bold text-[18px]'>{storedData.name}</span>
+                        <span className='text-gray-400'>{storedData.role}</span>
                     </div>
                 </div>
 

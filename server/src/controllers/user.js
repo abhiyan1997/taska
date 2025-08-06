@@ -49,4 +49,9 @@ const registerUser = async (req, res) => {
     return res.json({ message: "User Created Successfully." })
 }
 
+const getUserData= async (req,res)=>{
+    const userData= User.findOne({email: req.body.email});
+    
+}
+
 export { getAllUsers, registerUser, loginUser }

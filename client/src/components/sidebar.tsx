@@ -1,13 +1,20 @@
-import { Calendar, IndianRupee, MessageCircle, Notebook, Settings, User } from 'lucide-react'
+
+import { Calendar, IndianRupee, MessageCircle, Notebook, Plus, Settings, User } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+
+
 
 const Sidebar = () => {
   return (
     <div>
         <div className='bg-black w-72 h-screen text-white flex flex-col gap-2'>
         <div className='m-2 p-2 flex items-center justify-center w-[100%]'>
-        <Link href='/'><img src="taska_logo.png" className='w-52' /></Link>
+        <Link href='/'><img src="/taska_logo.png" className='w-52' /></Link>
+        </div>
+         <div className='flex gap-2 m-3 p-2'>
+        <Plus></Plus>
+        <span>Add Services</span>
         </div>
         <div className='flex gap-2 m-3 p-2'>
         <Calendar></Calendar>
@@ -24,10 +31,6 @@ const Sidebar = () => {
         <div className='flex gap-2 m-3 p-2'>
        <Notebook></Notebook>
         <span>Reviews</span>
-        </div>
-        <div className='flex gap-2 m-3 p-2'>
-        <IndianRupee></IndianRupee>
-        <span>Finances</span>
         </div>
         <div className='flex gap-2 m-3 p-2'>
         <Settings></Settings>
