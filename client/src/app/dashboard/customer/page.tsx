@@ -13,38 +13,39 @@ const Customer = () => {
     <div className='flex flex-col'>
       <Navbar></Navbar>
       <div>
-        <h1>welcome {userData.name}</h1>
         <div className='flex m-2 p-2 gap-5'>
-        <div>
-          <Card className='w-72 bg-gray-300'>
-            <CardHeader>
-              <CardTitle>Plumber</CardTitle>
-              <CardDescription>Reliable plumbing solutions for homes and businesses</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button>Book Now</Button>
-            </CardContent>
-            <CardFooter>
-              <p>By: Abhiyan</p>
-            </CardFooter>
-          </Card>
-        </div>
+          <div>
+            <Card className="w-72 bg-gray-300 transition-transform duration-300 hover:scale-105">
+              <CardHeader>
+                <CardTitle>Plumber</CardTitle>
+                <CardAction className='font-bold'>Rs. 500/hr</CardAction>
+                <CardDescription>Reliable plumbing solutions for homes and businesses</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button>Book Now</Button>
+              </CardContent>
+              <CardFooter>
+                <p>By: Abhiyan</p>
+              </CardFooter>
+            </Card>
+          </div>
 
-        <div>
-          <Card className='w-72 bg-gray-300'>
-            <CardHeader>
-              <CardTitle>Plumber</CardTitle>
-              <CardDescription>Reliable plumbing solutions for homes and businesses</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button>Book Now</Button>
-            </CardContent>
-            <CardFooter>
-              <p>By: Abhiyan</p>
-            </CardFooter>
-          </Card>
-        </div>
-        
+          <div>
+            <Card className="w-72 bg-gray-300 transition-transform duration-300 hover:scale-105">
+              <CardHeader>
+                <CardTitle>Plumber</CardTitle>
+                <CardAction className='font-bold'>Rs. 500/hr</CardAction>
+                <CardDescription>Reliable plumbing solutions for homes and businesses</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button>Book Now</Button>
+              </CardContent>
+              <CardFooter>
+                <p>By: Abhiyan</p>
+              </CardFooter>
+            </Card>
+          </div>
+
         </div>
       </div>
       <Footer></Footer>
