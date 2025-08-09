@@ -38,6 +38,7 @@ const Register = () => {
             validationSchema={RegisterSchema}
             onSubmit={async (values) => {
               axios.post("http://localhost:8080/register", values)
+              window.location.reload()
             }}
           >
             {({ errors, touched }) => (

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -35,16 +36,18 @@ const Login = () => {
             onSubmit={async (values) => {
               try {
                 const res = await axios.post('http://localhost:8080/login', values)
-                console.log('Login success', res.data)
+                toast(res.data.message)
                 if(res.data.isLoggedIn && res.data.user.role === 'Service Provider'){
                   localStorage.setItem('Provider', JSON.stringify(res.data.user))
                   router.push('/dashboard/provider')
                 }
                 else if(res.data.isLoggedIn && res.data.user.role === 'Customer'){
+                  localStorage.setItem('Customer', JSON.stringify(res.data.user))
                   router.push('/dashboard/customer')
                 }
-              } catch (err) {
-                console.error('Login failed', err)
+              } 
+              catch (err) {
+               toast(err.response.data.message)
               }
             }}
           >

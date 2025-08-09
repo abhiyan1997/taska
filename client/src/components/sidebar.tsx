@@ -12,10 +12,10 @@ const Sidebar = () => {
         <div className='m-2 p-2 flex items-center justify-center w-[100%]'>
         <Link href='/'><img src="/taska_logo.png" className='w-52' /></Link>
         </div>
-         <div className='flex gap-2 m-3 p-2'>
+         <Link href='/dashboard/provider/addservices'><div className='flex gap-2 m-3 p-2'>
         <Plus></Plus>
         <span>Add Services</span>
-        </div>
+        </div></Link>
         <div className='flex gap-2 m-3 p-2'>
         <Calendar></Calendar>
         <span>Appointments</span>

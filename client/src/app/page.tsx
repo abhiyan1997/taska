@@ -9,7 +9,7 @@ import React from 'react'
 
 const Main = () => {
   return (
-    <div>
+    <div className='flex flex-col'>
      <Navbar></Navbar>
 
      <div className='w-screen border border-black h-130 flex'>

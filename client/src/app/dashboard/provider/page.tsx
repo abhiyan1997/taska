@@ -1,11 +1,14 @@
 'use client'
 import Sidebar from '@/components/sidebar'
-import axios from 'axios'
-import { Bell, Calendar, Search, User } from 'lucide-react'
-import React, { useEffect } from 'react'
+import { Bell, Calendar, LogOut, Search, User } from 'lucide-react'
+import Link from 'next/link'
+import React from 'react'
 
 const ProviderDashboard = () => {
-    const storedData= JSON.parse(localStorage.getItem('Provider')) 
+    const handleLogOut= ()=>{
+        localStorage.clear()
+    }
+    const storedData= JSON.parse(localStorage.getItem('Provider'))
   return (
     <div>
         <div className='flex gap-2'>
@@ -17,13 +20,14 @@ const ProviderDashboard = () => {
                 <div className='flex gap-8 items-center'>
                     <Search></Search>
                     <Bell></Bell>
+                    <Link href='/'><LogOut onClick={handleLogOut}></LogOut></Link>
                     <div className='flex flex-col m-2 p-2'>
                         <span className='font-bold text-[18px]'>{storedData.name}</span>
                         <span className='text-gray-400'>{storedData.role}</span>
                     </div>
                 </div>
-
             </div>
+            
             <div className='m-2 p-2'>
             <span className='m-2 p-2 text-[30px] font-bold'>Dashboard</span>
             </div>
@@ -36,7 +40,7 @@ const ProviderDashboard = () => {
                     </div>
                     <div>
                     <span className='text-[30px] m-2 p-2 font-bold'>
-                        100
+                        --
                     </span>
                     </div>
                 </div>
@@ -48,7 +52,7 @@ const ProviderDashboard = () => {
                     </div>
                     <div>
                     <span className='text-[30px] m-2 p-2 font-bold'>
-                        100
+                        --
                     </span>
                     </div>
                 </div>

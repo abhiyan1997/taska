@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='bg-black text-white '>
+    <div className='bg-black text-white'>
         <div className='text-center m-2 p-2 flex flex-col'>
             <span className='text-[30px] font-bold m-2'>Get more done on the go</span>
             <span className='text-gray-200'>Need something done fast? Download the Taska app to book your service, message them quickly <br /> and even send photos with ease – make it happen now!</span>
