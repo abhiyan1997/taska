@@ -15,7 +15,6 @@ const userSchema = new Schema({
     enum: ['Customer', 'Service Provider'],
     default: 'Customer'
   },
-  services: [String] //---> For Service provider only
 });
 
 const User= mongoose.model('User', userSchema)

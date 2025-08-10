@@ -6,12 +6,13 @@ import { Textarea } from '@/components/ui/textarea'
 import React from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
+import { toast } from 'sonner'
 
 const ServiceSchema = Yup.object().shape({
   title: Yup.string().min(2, 'Too Short!').required('Required'),
   description: Yup.string().min(10, 'Too Short!').required('Required'),
   price: Yup.number().typeError('Must be a number').positive('Must be positive').required('Required'),
-  image: Yup.mixed().required('Required')
 })
 
 const Addservices = () => {
@@ -28,11 +29,11 @@ const Addservices = () => {
             title: '',
             description: '',
             price: '',
-            // image: null
           }}
           validationSchema={ServiceSchema}
-          onSubmit={(values) => {
-            console.log(values)
+          onSubmit={async (values) => {
+            const res= await axios.post('http://localhost:8080/addservices', values)
+            toast(res.data.message)
           }}
         >
           {({ errors, touched, setFieldValue }) => (
@@ -68,25 +69,12 @@ const Addservices = () => {
                 <Field
                   name="price"
                   as={Input}
+                  type= 'number'
                   className='border-black'
                   placeholder='/hr'
                 />
                 {errors.price && touched.price && (
                   <div className="text-red-500 text-sm">{errors.price}</div>
-                )}
-              </div>
-
-              <div className='m-2 p-2'>
-                <span>Image</span>
-                <Input
-                  type='file'
-                  className='border-black cursor-pointer w-max'
-                  onChange={(event) => {
-                    setFieldValue("image", event.currentTarget.files[0])
-                  }}
-                />
-                {errors.image && touched.image && (
-                  <div className="text-red-500 text-sm">{errors.image}</div>
                 )}
               </div>
 
