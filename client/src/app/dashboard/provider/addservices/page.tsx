@@ -13,9 +13,11 @@ const ServiceSchema = Yup.object().shape({
   title: Yup.string().min(2, 'Too Short!').required('Required'),
   description: Yup.string().min(10, 'Too Short!').required('Required'),
   price: Yup.number().typeError('Must be a number').positive('Must be positive').required('Required'),
+  by: Yup.string().min(3, 'Too Short!').required('Required'),
 })
 
 const Addservices = () => {
+  const providerData= JSON.parse(localStorage.getItem('Provider'))
   return (
     <div>
       <div className='flex gap-5'>
@@ -29,6 +31,7 @@ const Addservices = () => {
             title: '',
             description: '',
             price: '',
+            by: providerData.name
           }}
           validationSchema={ServiceSchema}
           onSubmit={async (values) => {
@@ -75,6 +78,19 @@ const Addservices = () => {
                 />
                 {errors.price && touched.price && (
                   <div className="text-red-500 text-sm">{errors.price}</div>
+                )}
+              </div>
+
+              <div className='m-2 p-2'>
+                <span>By</span>
+                <Field
+                  name="by"
+                  as={Input}
+                  className='border-black'
+                  readOnly
+                />
+                {errors.by && touched.by && (
+                  <div className="text-red-500 text-sm">{errors.by}</div>
                 )}
               </div>
 

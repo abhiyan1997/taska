@@ -5,4 +5,9 @@ const addServices= async (req,res)=>{
     res.status(200).json({message: "Service added successfully!!"})
 }
 
-export default addServices
+const getServices = async(req,res)=>{
+    const getData= await Services.find()
+    res.status(200).json({message: getData})
+}
+
+export {addServices, getServices}

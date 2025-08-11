@@ -3,47 +3,46 @@ import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import axios from 'axios'
 import { Router, useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 const Customer = () => {
+  const [getServices, setGetServices] = useState([])
   const userData = JSON.parse(localStorage.getItem('Customer'))
+
+  useEffect(() => {
+    const dataFetch = async () => {
+      const res = await axios.get('http://localhost:8080/getservices')
+      setGetServices(res.data.message)
+    }
+    dataFetch()
+  }, [])
+  console.log(getServices)
+
   return (
     <div className='flex flex-col'>
       <Navbar></Navbar>
       <div>
         <div className='flex m-2 p-2 gap-5'>
           <div>
-            <Card className="w-72 bg-gray-300 transition-transform duration-300 hover:scale-105">
+            
+              {getServices.map((items, index) => (
+              <Card key={index} className="w-112 bg-gray-300 transition-transform duration-300 hover:scale-105">
               <CardHeader>
-                <CardTitle>Plumber</CardTitle>
-                <CardAction className='font-bold'>Rs. 500/hr</CardAction>
-                <CardDescription>Reliable plumbing solutions for homes and businesses</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button>Book Now</Button>
-              </CardContent>
-              <CardFooter>
-                <p>By: Abhiyan</p>
-              </CardFooter>
-            </Card>
-          </div>
-
-          <div>
-            <Card className="w-72 bg-gray-300 transition-transform duration-300 hover:scale-105">
-              <CardHeader>
-                <CardTitle>Plumber</CardTitle>
-                <CardAction className='font-bold'>Rs. 500/hr</CardAction>
-                <CardDescription>Reliable plumbing solutions for homes and businesses</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button>Book Now</Button>
-              </CardContent>
-              <CardFooter>
-                <p>By: Abhiyan</p>
-              </CardFooter>
-            </Card>
+              <CardTitle>{items.title}</CardTitle>
+              <CardAction className='font-bold'>Rs. {items.price}/hr</CardAction>
+              <CardDescription>{items.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button>Book Now</Button>
+            </CardContent>
+            <CardFooter>
+              <p>By: {items.by}</p>
+            </CardFooter>
+          </Card>
+            ))}
           </div>
 
         </div>

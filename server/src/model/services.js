@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 const servicesSchema = new Schema({
     title: String,
     description: String,
-    Price: Number,
-    By: String
+    price: Number,
+    by: String,
 });
 
 const Services= mongoose.model('Services', servicesSchema)
