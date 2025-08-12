@@ -4,6 +4,7 @@ import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import axios from 'axios'
+import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
@@ -19,14 +20,13 @@ const Customer = () => {
     }
     dataFetch()
   }, [])
-  console.log(getServices)
 
   return (
     <div className='flex flex-col'>
       <Navbar></Navbar>
       <div>
         <div className='flex m-2 p-2 gap-5'>
-          <div>
+          <div className='flex m-2 p-2 gap-5'>
             
               {getServices.map((items, index) => (
               <Card key={index} className="w-112 bg-gray-300 transition-transform duration-300 hover:scale-105">
@@ -36,7 +36,7 @@ const Customer = () => {
               <CardDescription>{items.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button>Book Now</Button>
+              <Link href={`customer/bookservices/`}><Button>Book Now</Button></Link>
             </CardContent>
             <CardFooter>
               <p>By: {items.by}</p>
