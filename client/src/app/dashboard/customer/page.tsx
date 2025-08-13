@@ -36,7 +36,7 @@ const Customer = () => {
               <CardDescription>{items.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <Link href={`customer/bookservices/`}><Button>Book Now</Button></Link>
+              <Link href={`customer/bookservices/${items._id}`}><Button>Book Now</Button></Link>
             </CardContent>
             <CardFooter>
               <p>By: {items.by}</p>

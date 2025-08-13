@@ -10,4 +10,12 @@ const getServices = async(req,res)=>{
     res.status(200).json({message: getData})
 }
 
-export {addServices, getServices}
+const getServiceById = async(req,res)=>{
+    const {id}= req.params
+    const getData= await Services.findById(id)
+    res.status(200).json({message: getData})
+}
+
+
+
+export {addServices, getServices, getServiceById}
