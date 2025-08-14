@@ -12,18 +12,21 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Formik, Form } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import { Input } from '@/components/ui/input'
 import { useParams } from 'next/navigation'
+import { toast } from 'sonner'
 
 const BookingSchema = Yup.object().shape({
     date: Yup.date().required('Date is required'),
     timing: Yup.string().required('Timing is required'),
-    service: Yup.string().required('Service is required'),
-    price: Yup.string().required('Price is required'),
-    by: Yup.string().required('Service provider is required'),
+    phonenumber: Yup.string().required('Phone Number is required'),
+    location: Yup.string().required('Location is required'),
+    service: Yup.string(),
+    price: Yup.number(),
+    by: Yup.string(),
 })
 
 const BookServices = () => {
@@ -39,6 +42,9 @@ const BookServices = () => {
         fetchData()
     }, [id])
 
+    const localData= JSON.parse(localStorage.getItem('Customer'))
+    console.log(localData)
+
     return (
         <div className='flex flex-col gap-2'>
             <Navbar />
@@ -47,23 +53,28 @@ const BookServices = () => {
                 initialValues={{
                     date: '',
                     timing: '',
+                    phonenumber: '',
+                    location: '',
+                    customername: localData.name,
                     service: data.title || '',
-                    price: data.price ? `Rs. ${data.price}/hr` : '',
+                    price: data.price,
                     by: data.by || '',
                 }}
                 validationSchema={BookingSchema}
-                onSubmit={(values) => {
-                    console.log('Form data:', values)
-                    alert('Booking Submitted!')
+                onSubmit={async (values, { resetForm }) => {
+                    const res = await axios.post('http://localhost:8080/addappointments', values)
+                    toast(res.data.message)
+                    console.log(values)
+                    resetForm()
                 }}
             >
-                {({ values, errors, touched, setFieldValue }) => (
+                {({ values, errors, touched, setFieldValue, handleChange }) => (
                     <Form>
                         <div className='flex justify-center'>
                             <div className='bg-gray-200 w-162 h-auto m-2 p-4 flex flex-col items-center text-center'>
                                 <h1 className='text-center font-bold text-[30px]'>Book a service</h1>    
 
-                                {/* Date Field */}
+                                {/* Date Picker */}
                                 <div className='flex flex-col gap-1 m-2 p-2'>
                                     <label>Select a date</label>
                                     <Popover>
@@ -89,7 +100,7 @@ const BookServices = () => {
                                     {errors.date && touched.date && <div className="text-red-500 text-sm">{errors.date}</div>}
                                 </div>
 
-                                {/* Timing Field */}
+                                {/* Timing */}
                                 <div className='flex flex-col gap-1 m-2 p-2'>
                                     <label>Select a Timing</label>
                                     <Select onValueChange={(val) => setFieldValue('timing', val)}>
@@ -107,7 +118,34 @@ const BookServices = () => {
                                     {errors.timing && touched.timing && <div className="text-red-500 text-sm">{errors.timing}</div>}
                                 </div>
 
-                                {/* Service Field */}
+                                {/* Phone Number */}
+                                <div className='flex flex-col gap-1 m-2 p-2'>
+                                    <label>Phone Number</label>
+                                    <Input
+                                        type='number'
+                                        name="phonenumber"
+                                        value={values.phonenumber}
+                                        onChange={handleChange}
+                                        className='text-[20px] w-[280px] bg-white'
+                                        placeholder='Enter Your Phone Number'
+                                    />
+                                    {errors.phonenumber && touched.phonenumber && <div className="text-red-500 text-sm">{errors.phonenumber}</div>}
+                                </div>
+
+                                {/* Location */}
+                                <div className='flex flex-col gap-1 m-2 p-2'>
+                                    <label>Location</label>
+                                    <Input
+                                        name="location"
+                                        value={values.location}
+                                        onChange={handleChange}
+                                        className='text-[20px] w-[280px] bg-white'
+                                        placeholder='Enter Your Location'
+                                    />
+                                    {errors.location && touched.location && <div className="text-red-500 text-sm">{errors.location}</div>}
+                                </div>
+
+                                {/* Service */}
                                 <div className='flex flex-col gap-1 m-2 p-2'>
                                     <label>Service</label>
                                     <Input
@@ -115,10 +153,9 @@ const BookServices = () => {
                                         value={values.service}
                                         readOnly
                                     />
-                                    {errors.service && touched.service && <div className="text-red-500 text-sm">{errors.service}</div>}
                                 </div>
 
-                                {/* Price Field */}
+                                {/* Price */}
                                 <div className='flex flex-col gap-1 m-2 p-2'>
                                     <label>Price</label>
                                     <Input
@@ -126,10 +163,9 @@ const BookServices = () => {
                                         value={values.price}
                                         readOnly
                                     />
-                                    {errors.price && touched.price && <div className="text-red-500 text-sm">{errors.price}</div>}
                                 </div>
 
-                                {/* By Field */}
+                                {/* By */}
                                 <div className='flex flex-col gap-1 m-2 p-2'>
                                     <label>By</label>
                                     <Input
@@ -137,7 +173,6 @@ const BookServices = () => {
                                         value={values.by}
                                         readOnly
                                     />
-                                    {errors.by && touched.by && <div className="text-red-500 text-sm">{errors.by}</div>}
                                 </div>
 
                                 <div className='m-2 p-2'>

@@ -1,6 +1,7 @@
 import express from "express"
 import userRoutes from './routes/user.js'
 import servicesRoutes from './routes/services.js'
+import appointmentsRoutes from './routes/appointments.js'
 import connect from "./db/connect.js";
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -17,6 +18,7 @@ connect()
 
 app.use(userRoutes)
 app.use(servicesRoutes)
+app.use(appointmentsRoutes)
 
 app.listen(PORT, ()=>{
     console.log("Server is running on ", PORT)

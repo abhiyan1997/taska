@@ -10,16 +10,16 @@ const Sidebar = () => {
     <div>
         <div className='bg-black w-72 h-screen text-white flex flex-col gap-2'>
         <div className='m-2 p-2 flex items-center justify-center w-[100%]'>
-        <Link href='/'><img src="/taska_logo.png" className='w-52' /></Link>
+        <Link href='/dashboard/provider'><img src="/taska_logo.png" className='w-52' /></Link>
         </div>
          <Link href='/dashboard/provider/addservices'><div className='flex gap-2 m-3 p-2'>
         <Plus></Plus>
         <span>Add Services</span>
         </div></Link>
-        <div className='flex gap-2 m-3 p-2'>
+       <Link href='/dashboard/provider/appointments'><div className='flex gap-2 m-3 p-2'>
         <Calendar></Calendar>
         <span>Appointments</span>
-        </div>
+        </div></Link> 
         <div className='flex gap-2 m-3 p-2'>
         <User></User>
         <span>Clients</span>
