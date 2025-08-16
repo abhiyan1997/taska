@@ -9,6 +9,7 @@ const appointmentsSchema = new Schema({
     customername: String,
     date: Date,
     timing: String,
+    providerId: String,
 });
 
 const Appointments= mongoose.model('Appointments', appointmentsSchema)

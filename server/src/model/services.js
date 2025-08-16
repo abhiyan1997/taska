@@ -6,6 +6,7 @@ const servicesSchema = new Schema({
     description: String,
     price: Number,
     by: String,
+    providerId: String,
 });
 
 const Services= mongoose.model('Services', servicesSchema)

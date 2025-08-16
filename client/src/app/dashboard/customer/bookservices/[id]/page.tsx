@@ -27,6 +27,7 @@ const BookingSchema = Yup.object().shape({
     service: Yup.string(),
     price: Yup.number(),
     by: Yup.string(),
+    providerId: Yup.string(),
 })
 
 const BookServices = () => {
@@ -59,6 +60,7 @@ const BookServices = () => {
                     service: data.title || '',
                     price: data.price,
                     by: data.by || '',
+                    providerId: data.providerId,
                 }}
                 validationSchema={BookingSchema}
                 onSubmit={async (values, { resetForm }) => {

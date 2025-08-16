@@ -12,8 +12,9 @@ import { toast } from 'sonner'
 const ServiceSchema = Yup.object().shape({
   title: Yup.string().min(2, 'Too Short!').required('Required'),
   description: Yup.string().min(10, 'Too Short!').required('Required'),
-  price: Yup.number().typeError('Must be a number').positive('Must be positive').required('Required'),
+  price: Yup.number().typeError('Must be a number').positive('Must be positive').min(10,'Too long!').required('Required'),
   by: Yup.string().min(3, 'Too Short!').required('Required'),
+  providerId: Yup.string().required('Required'),
 })
 
 const Addservices = () => {
@@ -31,12 +32,14 @@ const Addservices = () => {
             title: '',
             description: '',
             price: '',
-            by: providerData.name
+            by: providerData.name,
+            providerId: providerData._id,
           }}
           validationSchema={ServiceSchema}
-          onSubmit={async (values) => {
+          onSubmit={async (values, { resetForm }) => {
             const res= await axios.post('http://localhost:8080/addservices', values)
             toast(res.data.message)
+            resetForm()
           }}
         >
           {({ errors, touched, setFieldValue }) => (

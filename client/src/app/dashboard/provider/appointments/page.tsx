@@ -5,10 +5,12 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Appointments = () => {
+    const localData= JSON.parse(localStorage.getItem('Provider'))
+    const providerId= localData._id
     const [data, setData]= useState([])
     useEffect(() => {
         const fetchData= async()=>{
-            const res= await axios.get('http://localhost:8080/getappointments')
+            const res= await axios.get(`http://localhost:8080/getappointments/${providerId}`)
             setData(res.data.message)
         }
         fetchData()

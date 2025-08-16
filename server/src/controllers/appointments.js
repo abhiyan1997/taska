@@ -6,7 +6,8 @@ const addAppointments= async (req,res)=>{
 }
 
 const getAppointments = async (req,res)=>{
-    const data= await Appointments.find()
+    const providerId= req.params.id
+    const data= await Appointments.find({providerId: providerId})
     res.status(200).json({message: data})
 }
 
