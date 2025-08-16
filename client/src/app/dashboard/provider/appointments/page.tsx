@@ -2,7 +2,9 @@
 import Sidebar from '@/components/sidebar'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import axios from 'axios'
+import { Check, Delete, Ticket } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 const Appointments = () => {
     const localData= JSON.parse(localStorage.getItem('Provider'))
@@ -15,6 +17,11 @@ const Appointments = () => {
         }
         fetchData()
     }, [])
+
+    const handleCheck= async(id)=>{
+       const res= await axios.post("http://localhost:8080/completeappointments",{id})
+       toast(res.data.message)
+    }
     
     return (
         <div className='flex gap-2'>
@@ -34,6 +41,7 @@ const Appointments = () => {
                             <TableHead>Location</TableHead>
                             <TableHead>Timing</TableHead>
                             <TableHead className="text-right">Amount</TableHead>
+                            <TableHead className="text-right">Action</TableHead>
                         </TableRow>
                     </TableHeader>
                     {data.map((item,index)=>(
@@ -47,6 +55,7 @@ const Appointments = () => {
                             <TableCell>{item.location}</TableCell>
                             <TableCell>{item.timing}</TableCell>
                             <TableCell className="text-right">Rs. {item.price}/hr</TableCell>
+                            <TableCell className="text-right flex gap-3"><Check onClick={()=>handleCheck(item._id)}></Check></TableCell>
                         </TableRow>
                     </TableBody>
                     ))}

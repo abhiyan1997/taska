@@ -11,4 +11,10 @@ const getAppointments = async (req,res)=>{
     res.status(200).json({message: data})
 }
 
-export {addAppointments, getAppointments}
+const completeAppointments= async (req,res)=>{
+    const {id}= req.body
+    await Appointments.findByIdAndDelete(id)
+    res.status(200).json({message: "Appointment Completed Successfully!"})
+}
+
+export {addAppointments, getAppointments, completeAppointments}
