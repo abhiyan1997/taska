@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Router, useRouter } from 'next/router'
 import React from 'react'
+import { Input } from './ui/input'
 
 const Navbar = () => {
 
@@ -29,6 +30,7 @@ const Navbar = () => {
 
       {pathname==='/dashboard/customer' && (
         <div className='flex justify-center items-center gap-5'>
+          <Input placeholder='Search For Anything' className='w-90'></Input>
           <span><User></User></span>
          <Link href='/'> <span onClick={handleLogout}><LogOut></LogOut></span></Link>
         </div>
