@@ -1,13 +1,15 @@
 // Can be inspired from https://dribbble.com/shots/20553452-Tasker-on-demand-service-platform-landing-page
-
+'use client'
 import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect } from 'react'
 
 const Main = () => {
+  
   return (
     <div className='flex flex-col'>
      <Navbar></Navbar>

@@ -49,9 +49,12 @@ const registerUser = async (req, res) => {
     return res.json({ message: "User Created Successfully." })
 }
 
-const getUserData= async (req,res)=>{
-    const userData= User.findOne({email: req.body.email});
-    
+const updateProfile = async(req,res)=>{
+    const id= req.body.id
+    const updatedData= {name:req.body.name, email:req.body.email, location: req.body.address}
+    await User.findByIdAndUpdate(id, {$set: updatedData})
+    res.status(200).json({message:"Profile Updated Succesfully"})
 }
 
-export { getAllUsers, registerUser, loginUser }
+
+export { getAllUsers, registerUser, loginUser, updateProfile}

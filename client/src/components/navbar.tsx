@@ -1,12 +1,19 @@
 'use client'
-import { DollarSign, LogOut, User } from 'lucide-react'
+import { DollarSign, LogOut, Search, User } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Router, useRouter } from 'next/router'
-import React from 'react'
+import { usePathname, useRouter} from 'next/navigation'
+import React, { useState } from 'react'
 import { Input } from './ui/input'
+import axios from 'axios'
+
 
 const Navbar = () => {
+  const router = useRouter()
+  const [search, setSearch]= useState("")
+
+  const handleSearch = ()=>{
+    router.push(`/dashboard/customer/search?query=${search}`)
+  }
 
    const handleLogout= ()=>{
     localStorage.clear()
@@ -28,10 +35,13 @@ const Navbar = () => {
       </div>
       )}
 
-      {pathname==='/dashboard/customer' && (
+      {pathname==='/dashboard/customer'  && (
         <div className='flex justify-center items-center gap-5'>
-          <Input placeholder='Search For Anything' className='w-90'></Input>
-          <span><User></User></span>
+          <form onSubmit={handleSearch} className='flex justify-center items-center'>
+          <Input placeholder='Search For Any Service You Need' className='w-100 p-3' onChange={(e)=>setSearch(e.target.value)} value={search}></Input>
+          <Search className='absolute right-30 p-[1px]' onClick={handleSearch}></Search>
+          </form>
+         <Link href='customer/profile'><span><User></User></span></Link> 
          <Link href='/'> <span onClick={handleLogout}><LogOut></LogOut></span></Link>
         </div>
       )

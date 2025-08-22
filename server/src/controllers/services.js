@@ -16,6 +16,12 @@ const getServiceById = async(req,res)=>{
     res.status(200).json({message: getData})
 }
 
+const searchServices = async (req,res)=>{
+    const searchQuery= req.query.query
+    const data= await Services.find({title: {$regex: searchQuery, $options:'i'}})
+    res.status(200).json({message: data})
+}
 
 
-export {addServices, getServices, getServiceById}
+
+export {addServices, getServices, getServiceById, searchServices}
