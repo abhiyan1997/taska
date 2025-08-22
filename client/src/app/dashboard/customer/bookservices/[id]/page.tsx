@@ -85,7 +85,7 @@ const BookServices = () => {
                     <h1 className="text-3xl font-bold mb-2">{values.service}</h1>
                     <p className="text-gray-300 text-lg">Professional service by {values.by}</p>
                     <div className="mt-4">
-                      <span className="text-4xl font-bold">रु{values.price}</span>
+                      <span className="text-4xl font-bold">रु {values.price}</span>
                       <span className="text-gray-300 ml-2">per service</span>
                     </div>
                   </div>
@@ -179,7 +179,7 @@ const BookServices = () => {
                       <h3 className="font-semibold text-gray-900 mb-4">Order Summary</h3>
                       <div className="flex justify-between items-center text-lg">
                         <span className="text-gray-700">{values.service}</span>
-                        <span className="font-bold text-black">₹{values.price}</span>
+                        <span className="font-bold text-black">रु {values.price}</span>
                       </div>
                       {values.date && values.timing && (
                         <div className="mt-3 pt-3 border-t border-gray-200">
@@ -200,7 +200,7 @@ const BookServices = () => {
                       type="submit"
                       className="w-full h-16 bg-black hover:bg-gray-800 text-white font-semibold text-lg rounded-lg"
                     >
-                      Confirm Booking - रु{values.price}
+                      Confirm Booking - रु {values.price}
                     </Button>
 
                     <div className="text-center text-sm text-gray-500">

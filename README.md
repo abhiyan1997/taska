@@ -30,13 +30,13 @@ Taska aims to solve the problem of finding trusted and nearby service providers 
 
 ### 📍 Phase 1 – MVP (Core System)
 - [x] Setup MERN architecture
-- [ ] User registration and login
-- [ ] Role-based access (customer, provider)
-- [ ] Service listing by providers
-- [ ] Service browsing by customers
+- [x] User registration and login
+- [x] Role-based access (customer, provider)
+- [x] Service listing by providers
+- [x] Service browsing by customers
 - [ ] Booking system with slot selection
-- [ ] Basic dashboards (customer/provider)
-- [ ] Filter/search services by category, city, and price
+- [x] Basic dashboards (customer/provider)
+- [x] Filter/search services by the title of service
 - [ ] Ratings and reviews by users to provider and vice-versa
 
 ### ✨ Phase 2 – Improved Functionality
