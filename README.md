@@ -6,7 +6,7 @@
 
 ## 📖 About the Project
 
-Taska aims to solve the problem of finding trusted and nearby service providers for Nepali households. From fixing lights to cleaning homes, Taska enables users to book verified professionals in just a few clicks — based on their area, time, and needs.
+Taska aims to solve the problem of finding trusted and nearby service providers for Nepali households. From fixing lights to cleaning homes, Taska enables users to book verified professionals in just a few clicks — based on their area, time, and needs
 
 ---
 
