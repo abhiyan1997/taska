@@ -7,14 +7,32 @@ const addAppointments= async (req,res)=>{
 
 const getAppointments = async (req,res)=>{
     const providerId= req.params.id
-    const data= await Appointments.find({providerId: providerId})
+    const data= await Appointments.find({providerId: providerId, isActive:true})
     res.status(200).json({message: data})
 }
 
 const completeAppointments= async (req,res)=>{
     const {id}= req.body
-    await Appointments.findByIdAndDelete(id)
+    await Appointments.findByIdAndUpdate(id, {isActive: false})
     res.status(200).json({message: "Appointment Completed Successfully!"})
 }
 
-export {addAppointments, getAppointments, completeAppointments}
+const countAppointments= async(req,res)=>{
+    const id= req.params.id
+    const data= await Appointments.countDocuments({providerId:id, isActive:true})
+    res.status(200).json({message:data})
+}
+
+const getHistory = async(req,res)=>{
+    const id= req.params.id
+    const data= await Appointments.find({providerId:id, isActive:false})
+    res.status(200).json({message:data})
+}
+
+const countHistory= async(req,res)=>{
+    const id= req.params.id
+    const data= await Appointments.countDocuments({providerId:id, isActive:false})
+    res.status(200).json({message:data})
+}
+
+export {addAppointments, getAppointments, completeAppointments, countAppointments, getHistory, countHistory}

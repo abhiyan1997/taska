@@ -1,13 +1,32 @@
 "use client"
 import Sidebar from "@/components/sidebar"
-import { Bell, Calendar, LogOut, Search, User } from "lucide-react"
+import axios from "axios"
+import { Bell, Calendar, Clock, LogOut, Search, User } from "lucide-react"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 const ProviderDashboard = () => {
   const handleLogOut = () => {
     localStorage.clear()
   }
   const storedData = JSON.parse(localStorage.getItem("Provider"))
+  const [appointmentsCount, setAppointmentsCount]= useState()
+  const [historyCount, setHistoryCount]= useState()
+
+  useEffect(() => {
+    const fetchData= async()=>{
+      const res= await axios.get(`http://localhost:8080/countappointments/${storedData._id}`)
+      setAppointmentsCount(res.data.message)
+    }
+    fetchData()
+
+    const fetchHistoryCount= async()=>{
+      const res= await axios.get(`http://localhost:8080/counthistory/${storedData._id}`)
+      setHistoryCount(res.data.message)
+    }
+    fetchHistoryCount()
+  }, [])
+
   return (
     <div>
       <div className="flex gap-2">
@@ -38,21 +57,6 @@ const ProviderDashboard = () => {
             <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <User className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <span className="text-lg font-semibold text-gray-800">Total Clients</span>
-                </div>
-              </div>
-              <div className="flex items-end gap-2">
-                <span className="text-3xl font-bold text-gray-900">--</span>
-                <span className="text-sm text-gray-500 mb-1">clients</span>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                     <Calendar className="w-6 h-6 text-green-600" />
                   </div>
@@ -60,8 +64,22 @@ const ProviderDashboard = () => {
                 </div>
               </div>
               <div className="flex items-end gap-2">
-                <span className="text-3xl font-bold text-gray-900">--</span>
+                <span className="text-3xl font-bold text-gray-900">{appointmentsCount}</span>
                 <span className="text-sm text-gray-500 mb-1">scheduled</span>
+              </div>
+            </div>
+                <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <Clock className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <span className="text-lg font-semibold text-gray-800">Total Services Completed</span>
+                </div>
+              </div>
+              <div className="flex items-end gap-2">
+                <span className="text-3xl font-bold text-gray-900">{historyCount}</span>
+                <span className="text-sm text-gray-500 mb-1">completed</span>
               </div>
             </div>
           </div>

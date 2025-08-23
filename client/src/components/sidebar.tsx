@@ -1,5 +1,5 @@
 
-import { Calendar, IndianRupee, MessageCircle, Notebook, Plus, Settings, User } from 'lucide-react'
+import { Calendar, Clock, IndianRupee, MessageCircle, Notebook, Plus, Settings, User } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -20,10 +20,10 @@ const Sidebar = () => {
         <Calendar></Calendar>
         <span>Appointments</span>
         </div></Link> 
-        <div className='flex gap-2 m-3 p-2'>
-        <User></User>
-        <span>Clients</span>
-        </div>
+        <Link href='/dashboard/provider/history'><div className='flex gap-3 m-3 p-2'>
+        <Clock></Clock>
+        <span>History</span>
+        </div></Link>
         <div className='flex gap-2 m-3 p-2'>
         <MessageCircle></MessageCircle>
         <span>Message</span>

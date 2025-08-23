@@ -10,6 +10,10 @@ const appointmentsSchema = new Schema({
     date: Date,
     timing: String,
     providerId: String,
+    isActive: {
+        type: Boolean, 
+        default: true
+    },
 });
 
 const Appointments= mongoose.model('Appointments', appointmentsSchema)
