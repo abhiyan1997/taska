@@ -37,7 +37,7 @@ Taska aims to solve the problem of finding trusted and nearby service providers 
 - [ ] Booking system with slot selection
 - [x] Basic dashboards (customer/provider)
 - [x] Filter/search services by the title of service
-- [ ] Ratings and reviews by users to provider and vice-versa
+- [x] Ratings and reviews by users to provider.
 
 ### ✨ Phase 2 – Improved Functionality
 - [ ] Admin dashboard (manage users, bookings, services)
