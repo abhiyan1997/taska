@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import axios from "axios"
 import { Calendar, Clock, MapPin, Phone, User, History, CheckCircle } from "lucide-react"
 import { useEffect, useState } from "react"
+import { format } from "date-fns"
 
 const AppointmentsHistory = () => {
     const localData= JSON.parse(localStorage.getItem('Provider'))
@@ -64,7 +65,7 @@ const AppointmentsHistory = () => {
                       <div className="flex flex-col gap-1">
                         <div className="flex items-center gap-2 text-sm">
                           <Calendar className="w-4 h-4 text-gray-500" />
-                          <span className="font-medium">{item.date}</span>
+                          <span className="font-medium">{format(new Date(item.date), "MMM dd, yyyy")}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600">
                           <Clock className="w-4 h-4 text-gray-500" />
