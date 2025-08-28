@@ -46,7 +46,8 @@ const BookServices = () => {
   const params = useParams()
   const { id } = params
 
-  const [reviews, setReviews]= useState([])
+  const [reviews, setReviews] = useState([])
+  const [dateRange, setDateRange] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,8 +56,8 @@ const BookServices = () => {
     }
     fetchData()
 
-    const fetchReviews = async()=>{
-      const res= await axios.get(`http://localhost:8080/getreviews/${id}`)
+    const fetchReviews = async () => {
+      const res = await axios.get(`http://localhost:8080/getreviews/${id}`)
       setReviews(res.data.message)
     }
     fetchReviews()
@@ -64,15 +65,16 @@ const BookServices = () => {
 
   const localData = JSON.parse(localStorage.getItem("Customer"))
 
+
+
   const renderStars = (rating, interactive = false, onStarClick = null) => {
     return (
       <div className="flex gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
           <StarIcon
             key={star}
-            className={`h-5 w-5 ${
-              star <= rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
-            } ${interactive ? "cursor-pointer hover:text-yellow-400" : ""}`}
+            className={`h-5 w-5 ${star <= rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+              } ${interactive ? "cursor-pointer hover:text-yellow-400" : ""}`}
             onClick={interactive ? () => onStarClick(star) : undefined}
           />
         ))}
@@ -146,12 +148,21 @@ const BookServices = () => {
                               <CalendarIcon className="mr-3 h-5 w-5" />
                               {values.date ? format(new Date(values.date), "PPP") : <span>Choose your date</span>}
                             </Button>
-                          </PopoverTrigger>
+                          </PopoverTrigger  >
                           <PopoverContent className="w-auto p-0">
                             <Calendar
                               mode="single"
-                              selected={values.date ? new Date(values.date) : undefined}
                               onSelect={(d) => setFieldValue("date", d)}
+                              disabled={
+                                (date)=>{
+                                  const start= data?.startDate ? new Date(data.startDate) : null
+                                  const end= data?.endDate ? new Date(data.endDate) : null
+
+                                  return(
+                                    (start && date<start || end && date>end)
+                                  )
+                                }
+                              }
                             />
                           </PopoverContent>
                         </Popover>
@@ -169,8 +180,12 @@ const BookServices = () => {
                           <SelectContent>
                             <SelectGroup>
                               <SelectLabel>Available Times</SelectLabel>
-                              <SelectItem value="9AM - 10AM">9:00 AM - 10:00 AM</SelectItem>
-                              <SelectItem value="10AM - 11AM">10:00 AM - 11:00 AM</SelectItem>
+                              {data?.timeSlots?.map((items, idx) => (
+                                <div key={idx}>
+                                  <SelectItem value={items}>{items}</SelectItem>
+                                </div>
+                              ))
+                              }
                             </SelectGroup>
                           </SelectContent>
                         </Select>

@@ -7,6 +7,9 @@ const servicesSchema = new Schema({
     price: Number,
     by: String,
     providerId: String,
+    startDate: String,
+    endDate: String,
+    timeSlots: Array
 });
 
 const Services= mongoose.model('Services', servicesSchema)

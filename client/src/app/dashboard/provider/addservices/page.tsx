@@ -18,10 +18,25 @@ const ServiceSchema = Yup.object().shape({
     .required("Required"),
   by: Yup.string().min(3, "Too Short!").required("Required"),
   providerId: Yup.string().required("Required"),
+  startDate: Yup.date().required("Please select start date"),
+  endDate: Yup.date().required("Please select end date").min(Yup.ref("startDate"), "End date must be after start date"),
+  timeSlots: Yup.array().min(1, "Please select at least one time slot").required("Required"),
 })
 
 const Addservices = () => {
   const providerData = JSON.parse(localStorage.getItem("Provider"))
+
+  const timeSlots = [
+    "9:00 AM - 10:00 AM",
+    "10:00 AM - 11:00 AM",
+    "11:00 AM - 12:00 PM",
+    "12:00 PM - 1:00 PM",
+    "1:00 PM - 2:00 PM",
+    "2:00 PM - 3:00 PM",
+    "3:00 PM - 4:00 PM",
+    "4:00 PM - 5:00 PM",
+  ]
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex">
@@ -43,6 +58,9 @@ const Addservices = () => {
                 price: "",
                 by: providerData.name,
                 providerId: providerData._id,
+                startDate: "",
+                endDate: "",
+                timeSlots: [],
               }}
               validationSchema={ServiceSchema}
               onSubmit={async (values, { resetForm }) => {
@@ -51,7 +69,7 @@ const Addservices = () => {
                 resetForm()
               }}
             >
-              {({ errors, touched, setFieldValue }) => (
+              {({ errors, touched, setFieldValue, values }) => (
                 <Form className="bg-white rounded-lg shadow-lg p-8 space-y-6">
                   {/* Service Details Section */}
                   <div className="space-y-6">
@@ -82,6 +100,72 @@ const Addservices = () => {
                     </div>
                   </div>
 
+                  <div className="space-y-6">
+                    <h2 className="text-xl font-semibold text-gray-900 border-b pb-2">Availability</h2>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">From</label>
+                        <Field
+                          name="startDate"
+                          as={Input}
+                          type="date"
+                          className="border-gray-300 focus:border-black focus:ring-black"
+                          min={new Date().toISOString().split("T")[0]}
+                        />
+                        {errors.startDate && touched.startDate && (
+                          <div className="text-red-500 text-sm mt-1">{errors.startDate}</div>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">To</label>
+                        <Field
+                          name="endDate"
+                          as={Input}
+                          type="date"
+                          className="border-gray-300 focus:border-black focus:ring-black"
+                          min={values.startDate || new Date().toISOString().split("T")[0]}
+                        />
+                        {errors.endDate && touched.endDate && (
+                          <div className="text-red-500 text-sm mt-1">{errors.endDate}</div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-gray-700">Available Time Slots</label>
+                      <div className="grid grid-cols-2 gap-3">
+                        {timeSlots.map((slot, index) => (
+                          <label
+                            key={index}
+                            className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              className="rounded border-gray-300 text-black focus:ring-black"
+                              checked={values.timeSlots.includes(slot)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFieldValue("timeSlots", [...values.timeSlots, slot])
+                                } else {
+                                  setFieldValue(
+                                    "timeSlots",
+                                    values.timeSlots.filter((s) => s !== slot),
+                                  )
+                                }
+                              }}
+                            />
+                            <span className="text-sm font-medium text-gray-700">{slot}</span>
+                          </label>
+                        ))}
+                      </div>
+                      {errors.timeSlots && touched.timeSlots && (
+                        <div className="text-red-500 text-sm mt-1">{errors.timeSlots}</div>
+                      )}
+                    </div>
+                  </div>
+
                   {/* Pricing Section */}
                   <div className="space-y-6">
                     <h2 className="text-xl font-semibold text-gray-900 border-b pb-2">Pricing & Provider</h2>
@@ -95,7 +179,7 @@ const Addservices = () => {
                           as={Input}
                           type="number"
                           className="border-gray-300 focus:border-black focus:ring-black pl-8"
-                          placeholder="50"
+                          placeholder="500"
                         />
                       </div>
                       {errors.price && touched.price && <div className="text-red-500 text-sm mt-1">{errors.price}</div>}
