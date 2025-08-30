@@ -7,6 +7,7 @@ import * as Yup from 'yup'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import axios from 'axios'
+import { toast } from 'sonner'
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string()
@@ -36,9 +37,10 @@ const Register = () => {
           <Formik
             initialValues={{ name: '', email: '', password: '', location: '', role: '' }}
             validationSchema={RegisterSchema}
-            onSubmit={async (values) => {
-              axios.post("http://localhost:8080/register", values)
-              window.location.reload()
+            onSubmit={async (values, {resetForm}) => {
+              const res = await axios.post("http://localhost:8080/register", values)
+              toast(res.data.message)
+              resetForm()
             }}
           >
             {({ errors, touched }) => (

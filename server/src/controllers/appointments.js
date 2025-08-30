@@ -1,8 +1,10 @@
 import Appointments from "../model/appointments.js";
+import sendEmail from "../utils/sendEmail.js";
 
 const addAppointments= async (req,res)=>{
     const data= await Appointments.create(req.body)
-    res.status(200).json({message: "Appointment booked successfully."})
+    sendEmail.sendEmailBooking(req.body.customeremail, {serviceName: req.body.service, price:req.body.price, date:req.body.date, timing:req.body.timing, customerName: req.body.customername})
+    res.status(200).json({message: "Appointment booked successfully. Check Your Email For More Info"})
 }
 
 const getAppointments = async (req,res)=>{

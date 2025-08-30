@@ -1,6 +1,7 @@
 import User from "../model/user.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import sendEmail from "../utils/sendEmail.js";
 
 
 const getAllUsers = async (req, res) => {
@@ -46,6 +47,7 @@ const registerUser = async (req, res) => {
 
     // Step 3 : Create user in DB
     await User.create(req.body)
+    sendEmail.sendEmailRegistration(req.body.email, {name:req.body.name})
     return res.json({ message: "User Created Successfully." })
 }
 

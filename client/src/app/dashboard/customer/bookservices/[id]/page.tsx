@@ -65,8 +65,6 @@ const BookServices = () => {
 
   const localData = JSON.parse(localStorage.getItem("Customer"))
 
-
-
   const renderStars = (rating, interactive = false, onStarClick = null) => {
     return (
       <div className="flex gap-1">
@@ -97,6 +95,7 @@ const BookServices = () => {
               phonenumber: "",
               location: "",
               customername: localData?.name || "",
+              customeremail: localData?.email || "",
               service: data.title || "",
               price: data.price,
               by: data.by || "",

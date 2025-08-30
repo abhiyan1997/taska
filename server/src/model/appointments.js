@@ -7,6 +7,7 @@ const appointmentsSchema = new Schema({
     location: String,
     price: Number,
     customername: String,
+    customeremail: String,
     date: Date,
     timing: String,
     providerId: String,
