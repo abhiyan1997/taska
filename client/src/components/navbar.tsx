@@ -37,7 +37,9 @@ const Navbar = () => {
 
       {pathname==='/dashboard/customer'  && (
         <div className='flex justify-center items-center gap-5'>
-          <form onSubmit={handleSearch} className='flex justify-center items-center'>
+          <form onSubmit={(e)=>
+            {e.preventDefault(); 
+            handleSearch();}} className='flex justify-center items-center'>
           <Input placeholder='Search For Any Service You Need' className='w-100 p-3' onChange={(e)=>setSearch(e.target.value)} value={search}></Input>
           <Search className='absolute right-30 p-[1px]' onClick={handleSearch}></Search>
           </form>

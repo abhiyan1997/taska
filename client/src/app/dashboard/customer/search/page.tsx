@@ -13,14 +13,18 @@ const Search = () => {
   const search = useSearchParams()
   const searchedTerm = search.get("query")
   const [data, setData] = useState([])
+  const [page,setPage]= useState(1)
+  const [dataCount, setDataCount]= useState(0)
 
   useEffect(() => {
     const dataFetch = async () => {
-      const res = await axios.get(`http://localhost:8080/searchservices?query=${searchedTerm}`)
+      const res = await axios.get(`http://localhost:8080/searchservices?query=${searchedTerm}&page=${page}`)
       setData(res.data.message)
+      setDataCount(res.data.count)
     }
     dataFetch()
-  }, [searchedTerm])
+  }, [searchedTerm, page])
+
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -108,6 +112,11 @@ const Search = () => {
           </div>
         )}
       </div>
+        <div className="flex gap-2 items-center justify-center m-2 p-2">
+          <Button onClick={()=>{if (page>1){setPage(page-1)}}} disabled={page===1}>Prev</Button>
+          <span>{page}</span>
+          <Button onClick={()=>{if(page < Math.ceil(dataCount/10)) {setPage(page+1)}}}>Next</Button>
+        </div>
     </div>
   )
 }

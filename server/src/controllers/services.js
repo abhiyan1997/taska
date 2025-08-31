@@ -18,10 +18,10 @@ const getServiceById = async(req,res)=>{
 
 const searchServices = async (req,res)=>{
     const searchQuery= req.query.query
-    const data= await Services.find({title: {$regex: searchQuery, $options:'i'}})
-    res.status(200).json({message: data})
+    const pageCount= req.query.page
+    const data= await Services.find({title: {$regex: searchQuery, $options:'i'}}).limit(10).skip((pageCount-1)*10)
+    const count = await Services.countDocuments({title: {$regex: searchQuery, $options:'i'}})
+    res.status(200).json({message: data, count:count})
 }
-
-
 
 export {addServices, getServices, getServiceById, searchServices}

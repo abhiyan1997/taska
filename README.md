@@ -48,6 +48,6 @@ Taska aims to solve the problem of finding trusted and nearby service providers 
 ### 🚀 Phase 3 – Advanced Features
 - [ ] Real-time chat between customers and providers (Socket.io)
 - [ ] Esewa / Khalti payment integration
-- [ ] Email/SMS notifications
+- [x] Email/SMS notifications
 - [ ] Route-based distance estimation using OSM
 - [ ] AI Chatbot for customer support (OpenAI/Dialogflow)

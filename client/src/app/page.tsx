@@ -4,11 +4,18 @@ import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import axios from 'axios'
 import { Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Main = () => {
+  const router = useRouter()
+  const [searchQuery, setSearchQuery]= useState("")
+
+  const handleSearch = async()=>{
+    router.push(`/dashboard/customer/search?query=${searchQuery}`)
+  }
   
   return (
     <div className='flex flex-col'>
@@ -22,9 +29,14 @@ const Main = () => {
         <span className='text-gray-400 tracking-[3px] text-[25px] m-2'>Taska</span>
         <span className='font-bold text-[35px] m-2'>Trusted Home Services, Right Around You</span>
         <span className='text-gray-400 text-[18px] m-2'>Skilled, Verified Service Providers — Ready to Help at Your Doorstep, Anywhere in Nepal.</span>    
-        <div className='bg-gray-200 text-black m-5 p-3 w-80 text-center rounded-[15px] transform -translate-x-1/2 -translate-y-1/2 left-[70%] top-1/2 absolute flex items-center'>
-          <Input className='border border-black m-2 p-2 w-70' placeholder='I need help with....'></Input>
+        <div className='bg-gray-200 text-black m-5 p-3 w-95 text-center rounded-[15px] transform -translate-x-1/2 -translate-y-1/2 left-[70%] top-1/2 absolute flex items-center'>
+        <form  className="flex items-center" onSubmit={(e) => {
+      e.preventDefault();
+      handleSearch();
+    }}>
+          <Input className='border border-black m-2 p-2 w-70' placeholder='I need help with....' onChange={(e)=>{setSearchQuery(e.target.value)}}></Input>
           <Button><Search></Search></Button>
+          </form>
         </div>
       </div>
      </div>

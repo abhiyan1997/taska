@@ -21,7 +21,7 @@ import * as Yup from "yup"
 import axios from "axios"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { toast } from "sonner"
 
 const BookingSchema = Yup.object().shape({
@@ -42,6 +42,7 @@ const ReviewSchema = Yup.object().shape({
 })
 
 const BookServices = () => {
+  const router= useRouter()
   const [data, setData] = useState({})
   const params = useParams()
   const { id } = params
@@ -81,6 +82,11 @@ const BookServices = () => {
   }
 
   const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
+
+  if(!(localData?._id)){
+    toast("Login To Book Services")
+    router.push('/login')
+  }
 
   return (
     <div className="min-h-screen bg-white">
