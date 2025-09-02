@@ -9,15 +9,18 @@ import { Input } from '@/components/ui/input'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUserDetails } from '@/lib/redux/features/userSlice'
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().min(6, 'Minimum 6 characters').required('Password is required'),
 })
 
-
 const Login = () => {
   const router= useRouter()
+  const dispatch = useDispatch()
+
   return (
     <div className='bg-black h-screen'>
       <div className='h-max w-50 m-2 p-2 border border-black rounded-[25px]'>
@@ -40,10 +43,12 @@ const Login = () => {
                 if(res.data.isLoggedIn && res.data.user.role === 'Service Provider'){
                   localStorage.setItem('Provider', JSON.stringify(res.data.user))
                   router.push('/dashboard/provider')
+                  dispatch(addUserDetails(res.data.user))
                 }
                 else if(res.data.isLoggedIn && res.data.user.role === 'Customer'){
                   localStorage.setItem('Customer', JSON.stringify(res.data.user))
                   router.push('/dashboard/customer')
+                  dispatch(addUserDetails(res.data.user))
                 }
               } 
               catch (err) {

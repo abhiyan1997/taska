@@ -8,6 +8,7 @@ import axios from 'axios'
 import { Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const Main = () => {
   const router = useRouter()
@@ -20,7 +21,6 @@ const Main = () => {
   return (
     <div className='flex flex-col'>
      <Navbar></Navbar>
-
      <div className='w-screen border border-black h-130 flex'>
       <div className='w-[50%] h-[100%] flex justify-center bg-gray-200'>
         <img src="/person_landing.png" alt="Person From Taska" className='h-[100%]' />

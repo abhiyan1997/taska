@@ -8,6 +8,7 @@ import { Bot, Cross, Delete, Minus, X } from "lucide-react"
 import Link from "next/link"
 import { parse } from "path"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
 const Customer = () => {
   const [getServices, setGetServices] = useState([])
@@ -72,8 +73,13 @@ const Customer = () => {
     setInputValue(suggestion)
   }
 
+  const value= useSelector(state=> state.user?.userDetails) 
+
+
   return (
     <div className="flex flex-col">
+       {/* <span>the value from redux is {JSON.stringify(value)}</span> */}
+
       <Navbar></Navbar>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-8">
         <div className="container mx-auto px-4">
